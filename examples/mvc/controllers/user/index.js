@@ -6,7 +6,7 @@ var db = require('../../db');
 
 exports.engine = 'hbs';
 
-exports.before = function(req, res, next){
+exports.before = (req, res, next) => {
   var id = req.params.user_id;
   if (!id) return next();
   // pretend to query a database...
@@ -19,19 +19,19 @@ exports.before = function(req, res, next){
   });
 };
 
-exports.list = function(req, res, next){
+exports.list = (req, res, next) => {
   res.render('list', { users: db.users });
 };
 
-exports.edit = function(req, res, next){
+exports.edit = (req, res, next) => {
   res.render('edit', { user: req.user });
 };
 
-exports.show = function(req, res, next){
+exports.show = (req, res, next) => {
   res.render('show', { user: req.user });
 };
 
-exports.update = function(req, res, next){
+exports.update = (req, res, next) => {
   var body = req.body;
   req.user.name = body.user.name;
   res.message('Information updated!');
